@@ -1,0 +1,215 @@
+﻿<ResourceDictionary xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+	xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+>
+    <CroppedBitmap x:Key="Button.TopLeft"               Source="Button.png" SourceRect="0,0,2,23"/>
+    <CroppedBitmap x:Key="Button.TopCenter"             Source="Button.png" SourceRect="2,0,1,23"/>
+    <CroppedBitmap x:Key="Button.TopRight"              Source="Button.png" SourceRect="3,0,2,23"/>
+
+    <CroppedBitmap x:Key="Button.Left"                  Source="Button.png" SourceRect="0,23,2,1"/>
+    <CroppedBitmap x:Key="Button.Center"                Source="Button.png" SourceRect="2,23,1,1"/>
+    <CroppedBitmap x:Key="Button.Right"                 Source="Button.png" SourceRect="3,23,2,1"/>
+
+    <CroppedBitmap x:Key="Button.BottomLeft"            Source="Button.png" SourceRect="0,24,2,2"/>
+    <CroppedBitmap x:Key="Button.BottomCenter"          Source="Button.png" SourceRect="2,24,1,2"/>
+    <CroppedBitmap x:Key="Button.BottomRight"           Source="Button.png" SourceRect="3,24,2,2"/>
+
+    
+    <CroppedBitmap x:Key="Button.Hover.TopLeft"         Source="Button.png" SourceRect="0,26,2,23"/>
+    <CroppedBitmap x:Key="Button.Hover.TopCenter"       Source="Button.png" SourceRect="2,26,1,23"/>
+    <CroppedBitmap x:Key="Button.Hover.TopRight"        Source="Button.png" SourceRect="3,26,2,23"/>
+
+    <CroppedBitmap x:Key="Button.Hover.Left"            Source="Button.png" SourceRect="0,49,2,1"/>
+    <CroppedBitmap x:Key="Button.Hover.Center"          Source="Button.png" SourceRect="2,49,1,1"/>
+    <CroppedBitmap x:Key="Button.Hover.Right"           Source="Button.png" SourceRect="3,49,2,1"/>
+
+    <CroppedBitmap x:Key="Button.Hover.BottomLeft"      Source="Button.png" SourceRect="0,50,2,2"/>
+    <CroppedBitmap x:Key="Button.Hover.BottomCenter"    Source="Button.png" SourceRect="2,50,1,2"/>
+    <CroppedBitmap x:Key="Button.Hover.BottomRight"     Source="Button.png" SourceRect="3,50,2,2"/>
+
+    
+    <CroppedBitmap x:Key="Button.Pressed.TopLeft"       Source="Button.png" SourceRect="0,52,2,23"/>
+    <CroppedBitmap x:Key="Button.Pressed.TopCenter"     Source="Button.png" SourceRect="2,52,1,23"/>
+    <CroppedBitmap x:Key="Button.Pressed.TopRight"      Source="Button.png" SourceRect="3,52,2,23"/>
+
+    <CroppedBitmap x:Key="Button.Pressed.Left"          Source="Button.png" SourceRect="0,75,2,1"/>
+    <CroppedBitmap x:Key="Button.Pressed.Center"        Source="Button.png" SourceRect="2,75,1,1"/>
+    <CroppedBitmap x:Key="Button.Pressed.Right"         Source="Button.png" SourceRect="3,75,2,1"/>
+
+    <CroppedBitmap x:Key="Button.Pressed.BottomLeft"    Source="Button.png" SourceRect="0,76,2,2"/>
+    <CroppedBitmap x:Key="Button.Pressed.BottomCenter"  Source="Button.png" SourceRect="2,76,1,2"/>
+    <CroppedBitmap x:Key="Button.Pressed.BottomRight"   Source="Button.png" SourceRect="3,76,2,2"/>
+
+    
+    <CroppedBitmap x:Key="Button.Disable.TopLeft"       Source="Button.png" SourceRect="0,78,2,23"/>
+    <CroppedBitmap x:Key="Button.Disable.TopCenter"     Source="Button.png" SourceRect="2,78,1,23"/>
+    <CroppedBitmap x:Key="Button.Disable.TopRight"      Source="Button.png" SourceRect="3,78,2,23"/>
+
+    <CroppedBitmap x:Key="Button.Disable.Left"          Source="Button.png" SourceRect="0,101,2,1"/>
+    <CroppedBitmap x:Key="Button.Disable.Center"        Source="Button.png" SourceRect="2,101,1,1"/>
+    <CroppedBitmap x:Key="Button.Disable.Right"         Source="Button.png" SourceRect="3,101,2,1"/>
+
+    <CroppedBitmap x:Key="Button.Disable.BottomLeft"    Source="Button.png" SourceRect="0,102,2,2"/>
+    <CroppedBitmap x:Key="Button.Disable.BottomCenter"  Source="Button.png" SourceRect="2,102,1,2"/>
+    <CroppedBitmap x:Key="Button.Disable.BottomRight"   Source="Button.png" SourceRect="3,102,2,2"/>
+
+    <Style TargetType="{x:Type Button}">
+		<Setter Property="Background" Value="Transparent" />
+		<Setter Property="Foreground" Value="Transparent" />
+        <Setter Property="FontSize" Value="11.5" />
+		<Setter Property="Height" Value="26" />
+		<Setter Property="Template">
+			<Setter.Value>
+				<ControlTemplate TargetType="{x:Type Button}">
+                    <Grid>
+                        <Image
+                            Name="topLeft"
+				            Source="{StaticResource Button.TopLeft}"
+				            VerticalAlignment="Top"
+				            HorizontalAlignment="Left"
+				            Width="2"
+				            Height="23"
+				            Margin="0,0,0,0" />
+                        <Image
+                            Name="topCenter"
+				            Source="{StaticResource Button.TopCenter}"
+				            VerticalAlignment="Top"
+				            HorizontalAlignment="Center"
+				            Stretch="Fill"
+				            Height="23"
+				            Margin="2,0,2,0" />
+                        <Image
+                            Name="topRight"
+				            Source="{StaticResource Button.TopRight}"
+				            VerticalAlignment="Top"
+				            HorizontalAlignment="Right"
+				            Width="2"
+				            Height="23"
+				            Margin="0,0,0,0" />
+                        <Image
+                            Name="left"
+				            Source="{StaticResource Button.Left}"
+				            VerticalAlignment="Top"
+				            HorizontalAlignment="Left"
+				            Width="2"
+				            Stretch="Fill"
+				            Margin="0,23,0,2" />
+                        <Image
+                            Name="center"
+				            Source="{StaticResource Button.Center}"
+				            VerticalAlignment="Top"
+				            HorizontalAlignment="Center"
+				            Stretch="Fill"
+				            Margin="2,23,2,2" />
+                        <Image
+                            Name="right"
+				            Source="{StaticResource Button.Right}"
+				            VerticalAlignment="Top"
+				            HorizontalAlignment="Right"
+				            Width="2"
+				            Stretch="Fill"
+				            Margin="0,23,0,2" />
+                        <Image
+                            Name="bottomLeft"
+				            Source="{StaticResource Button.BottomLeft}"
+				            VerticalAlignment="Bottom"
+				            HorizontalAlignment="Left"
+				            Width="2"
+				            Height="2"
+				            Margin="0,0,0,0" />
+                        <Image
+                            Name="bottomCenter"
+				            Source="{StaticResource Button.BottomCenter}"
+				            VerticalAlignment="Bottom"
+				            HorizontalAlignment="Center"
+				            Stretch="Fill"
+				            Height="2"
+				            Margin="2,0,2,0" />
+                        <Image
+                            Name="bottomRight"
+				            Source="{StaticResource Button.BottomRight}"
+				            VerticalAlignment="Bottom"
+				            HorizontalAlignment="Right"
+				            Width="2"
+				            Height="2"
+				            Margin="0,0,0,0" />
+                        <TextBlock
+                            Name="content"
+                            Foreground="#FF000000"
+                            HorizontalAlignment="Center"
+                            VerticalAlignment="Top"
+                            Margin="0,6,0,0"
+                            FontWeight="Bold"
+                            TextAlignment="Center"
+                            Width="{TemplateBinding Width}"
+                            Text="{TemplateBinding Content}">
+                            <TextBlock.Effect>
+                                <DropShadowEffect
+					                    ShadowDepth="0"
+					                    Color="#FFFFFFFF"
+					                    Opacity="1"
+					                    BlurRadius="3" />
+                            </TextBlock.Effect>
+                        </TextBlock>
+                    </Grid>
+					<ControlTemplate.Triggers>
+                        <Trigger Property="IsEnabled" Value="False">
+                            <Setter Property="Source" TargetName="topLeft"      Value="{StaticResource Button.Disable.TopLeft}" />
+                            <Setter Property="Source" TargetName="topCenter"    Value="{StaticResource Button.Disable.TopCenter}" />
+                            <Setter Property="Source" TargetName="topRight"     Value="{StaticResource Button.Disable.TopRight}" />
+                            <Setter Property="Source" TargetName="left"         Value="{StaticResource Button.Disable.Left}" />
+                            <Setter Property="Source" TargetName="center"       Value="{StaticResource Button.Disable.Center}" />
+                            <Setter Property="Source" TargetName="right"        Value="{StaticResource Button.Disable.Right}" />
+                            <Setter Property="Source" TargetName="bottomLeft"   Value="{StaticResource Button.Disable.BottomLeft}" />
+                            <Setter Property="Source" TargetName="bottomCenter" Value="{StaticResource Button.Disable.BottomCenter}" />
+                            <Setter Property="Source" TargetName="bottomRight"  Value="{StaticResource Button.Disable.BottomRight}" />
+							<Setter Property="Foreground" TargetName="content" Value="#FFAAAAAA" />
+						</Trigger>
+						<Trigger Property="IsMouseOver"	Value="True">
+                            <Setter Property="Source" TargetName="topLeft"      Value="{StaticResource Button.Hover.TopLeft}" />
+                            <Setter Property="Source" TargetName="topCenter"    Value="{StaticResource Button.Hover.TopCenter}" />
+                            <Setter Property="Source" TargetName="topRight"     Value="{StaticResource Button.Hover.TopRight}" />
+                            <Setter Property="Source" TargetName="left"         Value="{StaticResource Button.Hover.Left}" />
+                            <Setter Property="Source" TargetName="center"       Value="{StaticResource Button.Hover.Center}" />
+                            <Setter Property="Source" TargetName="right"        Value="{StaticResource Button.Hover.Right}" />
+                            <Setter Property="Source" TargetName="bottomLeft"   Value="{StaticResource Button.Hover.BottomLeft}" />
+                            <Setter Property="Source" TargetName="bottomCenter" Value="{StaticResource Button.Hover.BottomCenter}" />
+                            <Setter Property="Source" TargetName="bottomRight"  Value="{StaticResource Button.Hover.BottomRight}" />
+                            <Setter Property="Foreground" TargetName="content" Value="#FFFFFFFF" />
+                            <Setter Property="Effect" TargetName="content">
+                                <Setter.Value>
+                                    <DropShadowEffect
+					                    ShadowDepth="0"
+					                    Color="#FF000000"
+					                    Opacity="1"
+					                    BlurRadius="3" />
+                                </Setter.Value>
+                            </Setter>
+                        </Trigger>
+						<Trigger Property="IsPressed" Value="True">
+                            <Setter Property="Source" TargetName="topLeft"      Value="{StaticResource Button.Pressed.TopLeft}" />
+                            <Setter Property="Source" TargetName="topCenter"    Value="{StaticResource Button.Pressed.TopCenter}" />
+                            <Setter Property="Source" TargetName="topRight"     Value="{StaticResource Button.Pressed.TopRight}" />
+                            <Setter Property="Source" TargetName="left"         Value="{StaticResource Button.Pressed.Left}" />
+                            <Setter Property="Source" TargetName="center"       Value="{StaticResource Button.Pressed.Center}" />
+                            <Setter Property="Source" TargetName="right"        Value="{StaticResource Button.Pressed.Right}" />
+                            <Setter Property="Source" TargetName="bottomLeft"   Value="{StaticResource Button.Pressed.BottomLeft}" />
+                            <Setter Property="Source" TargetName="bottomCenter" Value="{StaticResource Button.Pressed.BottomCenter}" />
+                            <Setter Property="Source" TargetName="bottomRight"  Value="{StaticResource Button.Pressed.BottomRight}" />
+                            <Setter Property="Foreground" TargetName="content" Value="#FFFFFFFF" />
+                            <Setter Property="Effect" TargetName="content">
+                                <Setter.Value>
+                                    <DropShadowEffect
+					                    ShadowDepth="0"
+					                    Color="#FF000000"
+					                    Opacity="1"
+					                    BlurRadius="3" />
+                                </Setter.Value>
+                            </Setter>
+							<Setter Property="Margin" TargetName="content" Value="0,7,0,0" />
+						</Trigger>
+					</ControlTemplate.Triggers>
+				</ControlTemplate>
+			</Setter.Value>
+		</Setter>
+	</Style>
+</ResourceDictionary>

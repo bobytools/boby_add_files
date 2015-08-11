@@ -1,0 +1,32 @@
+﻿<ResourceDictionary xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+	xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+>
+    <CroppedBitmap x:Key="Button_Icone.Ini"             Source="Button.png" SourceRect="0,0,26,26"/>
+    <CroppedBitmap x:Key="Button_Icone.Hover"           Source="Button.png" SourceRect="25,0,26,26"/>
+    <CroppedBitmap x:Key="Button_Icone.Pressed"         Source="Button.png" SourceRect="50,0,26,26"/>
+
+    <Style x:Key="Button_Icon" TargetType="{x:Type Button}">
+		<Setter Property="Background" Value="Transparent" />
+		<Setter Property="Foreground" Value="Transparent" />
+		<Setter Property="Height" Value="26" />
+		<Setter Property="Template">
+			<Setter.Value>
+				<ControlTemplate TargetType="{x:Type Button}">
+					<Grid>
+                        <Image Name="bg" HorizontalAlignment="Left" VerticalAlignment="Top" Margin="0,0" Stretch="Fill" Source="{StaticResource Button_Icone.Ini}" />
+                        <Image Name="icon" Width="20" Height="20" Stretch="None" Margin="3,3,3,3" Source="{TemplateBinding Content}" />
+					</Grid>
+					<ControlTemplate.Triggers>
+						<Trigger Property="IsMouseOver"	Value="True">
+                            <Setter Property="Source" TargetName="bg" Value="{StaticResource Button_Icone.Hover}" />
+						</Trigger>
+						<Trigger Property="IsPressed" Value="True">
+                            <Setter Property="Source" TargetName="bg" Value="{StaticResource Button_Icone.Pressed}" />
+                            <Setter Property="Margin" TargetName="icon" Value="3,4,3,2" />
+						</Trigger>
+					</ControlTemplate.Triggers>
+				</ControlTemplate>
+			</Setter.Value>
+		</Setter>
+	</Style>
+</ResourceDictionary>

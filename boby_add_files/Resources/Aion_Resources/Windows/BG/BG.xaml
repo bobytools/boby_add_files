@@ -1,0 +1,28 @@
+﻿<ResourceDictionary xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+	xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+>
+	<ControlTemplate x:Key="BG1">
+		<Grid>
+			<Image
+				Source="BG1_Top.png"
+				VerticalAlignment="Top"
+				HorizontalAlignment="Left"
+				Stretch="Fill"
+				Height="11"
+				Margin="0,0,0,0" />
+			<Image
+				Source="BG1_Center.png"
+				VerticalAlignment="Top"
+				HorizontalAlignment="Right"
+				Stretch="Fill"
+				Margin="0,11,0,11" />
+			<Image
+				Source="BG1_Bottom.png"
+				VerticalAlignment="Bottom"
+				HorizontalAlignment="Left"
+				Stretch="Fill"
+				Height="11"
+				Margin="0,0,0,0" />
+		</Grid>
+	</ControlTemplate>	
+</ResourceDictionary>

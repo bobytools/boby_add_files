@@ -1,0 +1,188 @@
+﻿<ResourceDictionary xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+	xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+>
+
+    <CroppedBitmap x:Key="WindowButton.Close"          Source="Close.png" SourceRect="0,0,34,24"/>
+    <CroppedBitmap x:Key="WindowButton.Close.Hover"    Source="Close.png" SourceRect="0,24,34,24"/>
+    <CroppedBitmap x:Key="WindowButton.Close.Pressed"  Source="Close.png" SourceRect="0,48,34,24"/>
+
+    <Style x:Key="Style_Close_Button" TargetType="{x:Type Button}">
+		<Setter Property="Background" Value="Transparent" />
+		<Setter Property="Foreground" Value="Transparent" />
+		<Setter Property="Width" Value="34" />
+		<Setter Property="Height" Value="24" />
+		<Setter Property="Template">
+			<Setter.Value>
+				<ControlTemplate TargetType="{x:Type Button}">
+                    <Image Name="image"	Source="{StaticResource WindowButton.Close}" />
+					<ControlTemplate.Triggers>
+						<Trigger Property="IsMouseOver"	Value="True">
+							<Setter Property="Source" TargetName="image"
+							        Value="{StaticResource WindowButton.Close.Hover}" />
+						</Trigger>
+						<Trigger Property="IsPressed" Value="True">
+							<Setter	Property="Source" TargetName="image"
+							        Value="{StaticResource WindowButton.Close.Pressed}" />
+						</Trigger>
+					</ControlTemplate.Triggers>
+				</ControlTemplate>
+			</Setter.Value>
+		</Setter>
+	</Style>
+
+    <CroppedBitmap x:Key="WindowButton.Minimise"          Source="Minimise.png" SourceRect="0,0,26,24"/>
+    <CroppedBitmap x:Key="WindowButton.Minimise.Hover"    Source="Minimise.png" SourceRect="0,24,26,24"/>
+    <CroppedBitmap x:Key="WindowButton.Minimise.Pressed"  Source="Minimise.png" SourceRect="0,48,26,24"/>
+    
+    <Style x:Key="Style_Minimise_Button" TargetType="{x:Type Button}">
+		<Setter Property="Background" Value="Transparent" />
+		<Setter Property="Foreground" Value="Transparent" />
+		<Setter Property="Width" Value="26" />
+		<Setter Property="Height" Value="24" />
+        <Setter Property="Template">
+            <Setter.Value>
+                <ControlTemplate TargetType="{x:Type Button}">
+                    <Image Name="image"	Source="{StaticResource WindowButton.Minimise}" />
+                    <ControlTemplate.Triggers>
+                        <Trigger Property="IsMouseOver"	Value="True">
+                            <Setter Property="Source" TargetName="image"
+							        Value="{StaticResource WindowButton.Minimise.Hover}" />
+                        </Trigger>
+                        <Trigger Property="IsPressed" Value="True">
+                            <Setter	Property="Source" TargetName="image"
+							        Value="{StaticResource WindowButton.Minimise.Pressed}" />
+                        </Trigger>
+                    </ControlTemplate.Triggers>
+                </ControlTemplate>
+            </Setter.Value>
+        </Setter>
+    </Style>
+	<Style x:Key="Style_Setting_Button" TargetType="{x:Type Button}">
+		<Setter Property="Background" Value="Transparent" />
+		<Setter Property="Foreground" Value="Transparent" />
+		<Setter Property="Width" Value="28" />
+		<Setter Property="Height" Value="24" />
+		<Setter Property="Template">
+			<Setter.Value>
+				<ControlTemplate TargetType="{x:Type Button}">
+					<Grid>
+						<Image Name="image"	Source="Setting.png" />
+					</Grid>
+					<ControlTemplate.Triggers>
+						<Trigger Property="IsMouseOver"	Value="True">
+							<Setter	Property="Source" TargetName="image"
+							        Value="Setting_Hover.png" />
+						</Trigger>
+						<Trigger Property="IsPressed" Value="True">
+							<Setter	Property="Source" TargetName="image"
+							        Value="Setting_Pressed.png" />
+						</Trigger>
+					</ControlTemplate.Triggers>
+				</ControlTemplate>
+			</Setter.Value>
+		</Setter>
+	</Style>
+	<Style x:Key="Style_Hide_Button" TargetType="{x:Type Button}">
+		<Setter Property="Background" Value="Transparent" />
+		<Setter Property="Foreground" Value="Transparent" />
+		<Setter Property="Width" Value="28" />
+		<Setter Property="Height" Value="24" />
+		<Setter Property="Template">
+			<Setter.Value>
+				<ControlTemplate TargetType="{x:Type Button}">
+					<Grid>
+						<Image Name="image"	Source="Hide.png" />
+					</Grid>
+					<ControlTemplate.Triggers>
+						<Trigger Property="IsMouseOver"	Value="True">
+							<Setter	Property="Source" TargetName="image"
+							        Value="Hide_Hover.png" />
+						</Trigger>
+						<Trigger Property="IsPressed" Value="True">
+							<Setter	Property="Source" TargetName="image"
+							        Value="Hide_Pressed.png" />
+						</Trigger>
+					</ControlTemplate.Triggers>
+				</ControlTemplate>
+			</Setter.Value>
+		</Setter>
+	</Style>
+	<Style x:Key="Style_Show_Button" TargetType="{x:Type Button}">
+		<Setter Property="Background" Value="Transparent" />
+		<Setter Property="Foreground" Value="Transparent" />
+		<Setter Property="Width" Value="28" />
+		<Setter Property="Height" Value="24" />
+		<Setter Property="Template">
+			<Setter.Value>
+				<ControlTemplate TargetType="{x:Type Button}">
+					<Grid>
+						<Image Name="image"	Source="Show.png" />
+					</Grid>
+					<ControlTemplate.Triggers>
+						<Trigger Property="IsMouseOver"	Value="True">
+							<Setter	Property="Source" TargetName="image"
+							        Value="Show_Hover.png" />
+						</Trigger>
+						<Trigger Property="IsPressed" Value="True">
+							<Setter	Property="Source" TargetName="image"
+							        Value="Show_Pressed.png" />
+						</Trigger>
+					</ControlTemplate.Triggers>
+				</ControlTemplate>
+			</Setter.Value>
+		</Setter>
+	</Style>
+	<Style x:Key="Style_Refresh_Button" TargetType="{x:Type Button}">
+		<Setter Property="Background" Value="Transparent" />
+		<Setter Property="Foreground" Value="Transparent" />
+		<Setter Property="Width" Value="28" />
+		<Setter Property="Height" Value="24" />
+		<Setter Property="Template">
+			<Setter.Value>
+				<ControlTemplate TargetType="{x:Type Button}">
+					<Grid>
+						<Image Name="image"	Source="Refresh.png" />
+					</Grid>
+					<ControlTemplate.Triggers>
+						<Trigger Property="IsMouseOver"	Value="True">
+							<Setter	Property="Source" TargetName="image"
+							        Value="Refresh_Hover.png" />
+						</Trigger>
+						<Trigger Property="IsPressed" Value="True">
+							<Setter	Property="Source" TargetName="image"
+							        Value="Refresh_Pressed.png" />
+						</Trigger>
+					</ControlTemplate.Triggers>
+				</ControlTemplate>
+			</Setter.Value>
+		</Setter>
+	</Style>
+    <CroppedBitmap x:Key="Radar_Setting"                  Source="Radar_Setting.png" SourceRect="0,0,20,20"/>
+    <CroppedBitmap x:Key="Radar_Setting.Hover"            Source="Radar_Setting.png" SourceRect="20,0,20,20"/>
+    <CroppedBitmap x:Key="Radar_Setting.Pressed"          Source="Radar_Setting.png" SourceRect="40,0,20,20"/>
+    <Style x:Key="Style_Radar_Setting_Button" TargetType="{x:Type Button}">
+        <Setter Property="Background" Value="Transparent" />
+        <Setter Property="Foreground" Value="Transparent" />
+        <Setter Property="Width" Value="20" />
+        <Setter Property="Height" Value="20" />
+        <Setter Property="Template">
+            <Setter.Value>
+                <ControlTemplate TargetType="{x:Type Button}">
+                    <Grid>
+                        <Image Name="image"	Source="{StaticResource Radar_Setting}" />
+                    </Grid>
+                    <ControlTemplate.Triggers>
+                        <Trigger Property="IsMouseOver"	Value="True">
+                            <Setter	Property="Source" TargetName="image"
+							        Value="{StaticResource Radar_Setting.Hover}" />
+                        </Trigger>
+                        <Trigger Property="IsPressed" Value="True">
+                            <Setter	Property="Source" TargetName="image"
+							        Value="{StaticResource Radar_Setting.Pressed}" />
+                        </Trigger>
+                    </ControlTemplate.Triggers>
+                </ControlTemplate>
+            </Setter.Value>
+        </Setter>
+    </Style>
+</ResourceDictionary>
