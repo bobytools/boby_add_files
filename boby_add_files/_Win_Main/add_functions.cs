@@ -2,24 +2,24 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
-using System.Threading.Tasks;
+//using System.Threading.Tasks;
 using System.IO;
 using System.Windows;
-using System.Windows.Forms;
-using System.Windows.Controls;
-using System.Windows.Data;
-using System.Windows.Documents;
-using System.Windows.Input;
-using System.Windows.Media;
-using System.Windows.Media.Imaging;
-using System.Windows.Navigation;
-using System.Windows.Shapes;
+//using System.Windows.Forms;
+//using System.Windows.Controls;
+//using System.Windows.Data;
+//using System.Windows.Documents;
+//using System.Windows.Input;
+//using System.Windows.Media;
+//using System.Windows.Media.Imaging;
+//using System.Windows.Navigation;
+//using System.Windows.Shapes;
 using System.Threading;
-using System.Net;
-using System.ComponentModel;
+//using System.Net;
+//using System.ComponentModel;
 using System.Diagnostics;
 
-using Microsoft.Win32;
+//using Microsoft.Win32;
 
 using System.Xml;
 using System.IO.Compression;
@@ -257,6 +257,12 @@ namespace boby_add_files
                 System.IO.File.Copy(path + @"\Sounds\voice\defence\defence.pak", path + @"\L10N\" + dir_name + @"\sounds\voice\defence\defence.pak_boby", true);
                 System.IO.File.Copy(path + @"\Sounds\voice\login\login.pak", path + @"\L10N\" + dir_name + @"\sounds\voice\login\login.pak_boby", true);
                 System.IO.File.Copy(path + @"\Sounds\voice\social\social.pak", path + @"\L10N\" + dir_name + @"\sounds\voice\social\social.pak_boby", true);
+                File.SetLastWriteTime(path + @"\L10N\" + dir_name + @"\sounds\voice\attack\attack.pak_boby", DateTime.Now);
+                File.SetLastWriteTime(path + @"\L10N\" + dir_name + @"\sounds\voice\cast\cast.pak_boby", DateTime.Now);
+                File.SetLastWriteTime(path + @"\L10N\" + dir_name + @"\sounds\voice\damage\damage.pak_boby", DateTime.Now);
+                File.SetLastWriteTime(path + @"\L10N\" + dir_name + @"\sounds\voice\defence\defence.pak_boby", DateTime.Now);
+                File.SetLastWriteTime(path + @"\L10N\" + dir_name + @"\sounds\voice\login\login.pak_boby", DateTime.Now);
+                File.SetLastWriteTime(path + @"\L10N\" + dir_name + @"\sounds\voice\social\social.pak_boby", DateTime.Now);
             }
 
             info_text(path);
@@ -395,6 +401,36 @@ namespace boby_add_files
                                     foreach (XmlNode v3node in v2xmlnode)
                                         if (v3node.Name == "body")
                                             v3node.InnerText = "[V%0]";
+                                    break;
+                                case "STR_PARTY_MATCH_CREATE_COMMAND":
+                                    foreach (XmlNode v3node in v2xmlnode)
+                                        if (v3node.Name == "body")
+                                            v3node.InnerText = "RGM";
+                                    break;
+                                case "STR_FORCE_MATCH_CREATE_COMMAND":
+                                    foreach (XmlNode v3node in v2xmlnode)
+                                        if (v3node.Name == "body")
+                                            v3node.InnerText = "RAM";
+                                    break;
+                                case "STR_CMD_CREATE_PARTY":
+                                    foreach (XmlNode v3node in v2xmlnode)
+                                        if (v3node.Name == "body")
+                                            v3node.InnerText = "/RGM";
+                                    break;
+                                case "STR_CMD_CREATE_FORCE":
+                                    foreach (XmlNode v3node in v2xmlnode)
+                                        if (v3node.Name == "body")
+                                            v3node.InnerText = "/RAM";
+                                    break;
+                                case "STR_MACRO_USE_LEFT":
+                                    foreach (XmlNode v3node in v2xmlnode)
+                                        if (v3node.Name == "body")
+                                            v3node.InnerText = "/LE";
+                                    break;
+                                case "STR_MACRO_USE_RIGHT":
+                                    foreach (XmlNode v3node in v2xmlnode)
+                                        if (v3node.Name == "body")
+                                            v3node.InnerText = "/RI";
                                     break;
                                 case "STR_Abyssrank_light_10":
                                     foreach (XmlNode v3node in v2xmlnode)

@@ -18,13 +18,46 @@
 					<StackPanel
 						Background="Transparent"
 						Orientation="Horizontal">
-						<Image
-							x:Name="imageCheckBox"
-							Source="{StaticResource Img.Checkbox.Checked}"
-							Width="19"
-							Height="19"
-							Margin="7,2" />
-						<Grid Height="19" VerticalAlignment="Center">
+                        <Grid  Width="19" Height="19" Margin="7,2">
+                            <Border BorderBrush="#596170" BorderThickness="1" CornerRadius="3" Opacity="0.54">
+                                <Border x:Name="inner" BorderBrush="#090B0D" BorderThickness="1" CornerRadius="2" Opacity="0.74">
+                                    <Border BorderBrush="#0B0D10" BorderThickness="1" CornerRadius="2" Opacity="0.66">
+                                        <Border.Background>
+                                            <LinearGradientBrush StartPoint="0,0" EndPoint="0,1">
+                                                <GradientStop Color="#AA0B0D10" Offset="0.0" />
+                                                <GradientStop Color="#000B0D10" Offset="1.0" />
+                                            </LinearGradientBrush>
+                                        </Border.Background>
+                                    </Border>
+                                </Border>
+                            </Border>
+                            <Path x:Name="path" Data="M 0 4 L 6 4 L 9 8 L 16 0 L 16 3 L 9 12 L 8 12 Z"
+                                        Stretch="Uniform"
+                                        Fill="White"
+                                        Stroke="Black">
+                                <Path.Effect>
+                                    <DropShadowEffect
+					                    ShadowDepth="0"
+					                    Color="#FF4ACCD2"
+					                    Opacity="1"
+					                    BlurRadius="5" />
+                                </Path.Effect>                                
+                            </Path>
+                            <Path x:Name="path_over" Data="M 0 4 L 6 4 L 9 8 L 16 0 L 16 3 L 9 12 L 8 12 Z"
+                                        Stretch="Uniform"
+                                        Fill="#4ACCD2"
+                                        Stroke="Black"
+                                        Opacity="0">
+                                <Path.Effect>
+                                    <DropShadowEffect
+					                    ShadowDepth="0"
+					                    Color="#FFFFFFFF"
+					                    Opacity="1"
+					                    BlurRadius="5" />
+                                </Path.Effect>
+                            </Path>
+                        </Grid>
+                        <Grid Height="19" VerticalAlignment="Center">
                             <TextBlock
 								Name="content"
 								Text="{TemplateBinding Content}"
@@ -43,41 +76,79 @@
                         </Grid>
 					</StackPanel>
 					<ControlTemplate.Triggers>
-						<Trigger
-							Property="IsChecked"
-							Value="False">
-							<Setter
-								TargetName="imageCheckBox"
-								Property="Source"
-								Value="{StaticResource Img.Checkbox}" />
-						</Trigger>
-						<Trigger
-							Property="IsMouseOver"
-							Value="True">
-							<Setter
-								TargetName="content"
-								Property="Foreground"
-								Value="#FF88FFFF" />
-						</Trigger>
-						<Trigger Property="IsPressed" Value="True">
-                            <Setter Property="Foreground" TargetName="content" Value="#FF88FFFF" />
+                        <Trigger Property="IsChecked" Value="False">
+                            <Setter TargetName="path" Property="Opacity" Value="0" />
+                        </Trigger>
+                        <MultiTrigger>
+                            <MultiTrigger.Conditions>
+                                <Condition Property="IsChecked" Value="True" />
+                                <Condition Property="IsMouseOver" Value="True" />
+                            </MultiTrigger.Conditions>
+                            <MultiTrigger.Setters>
+                                <Setter TargetName="path" Property="Opacity" Value="0" />
+                                <Setter TargetName="path_over" Property="Opacity" Value="1" />
+                            </MultiTrigger.Setters>
+                        </MultiTrigger>
+                        <Trigger Property="IsMouseOver" Value="True">
+                            <Setter TargetName="content" Property="Foreground" Value="#FFD5AF5E" />
+                        </Trigger>
+                        <Trigger Property="IsPressed" Value="True">
+                            <Setter Property="Foreground" TargetName="content" Value="#FFD5AF5E" />
                             <Setter Property="Margin" TargetName="content" Value="0,4,0,0" />
 						</Trigger>
-						<Trigger
-							Property="IsEnabled"
-							Value="False">
-							<Setter
-								TargetName="imageCheckBox"
-								Property="Source"
-								Value="{StaticResource Img.Checkbox.Disable}" />
-							<Setter
-								TargetName="content"
-								Property="Foreground"
-								Value="#FF999999" />
-						</Trigger>
-					</ControlTemplate.Triggers>
+                        <MultiTrigger>
+                            <MultiTrigger.Conditions>
+                                <Condition Property="IsChecked" Value="True" />
+                                <Condition Property="IsEnabled" Value="False" />
+                            </MultiTrigger.Conditions>
+                            <MultiTrigger.Setters>
+                                <Setter TargetName="path" Property="Opacity" Value="0.5" />
+                                <Setter TargetName="path_over" Property="Opacity" Value="0" />
+                                <Setter	TargetName="content" Property="Foreground" Value="#FF999999" />
+                                <Setter TargetName="inner" Property="Opacity" Value="0.3"/>
+                            </MultiTrigger.Setters>
+                        </MultiTrigger>
+                        <MultiTrigger>
+                            <MultiTrigger.Conditions>
+                                <Condition Property="IsChecked" Value="False" />
+                                <Condition Property="IsEnabled" Value="False" />
+                            </MultiTrigger.Conditions>
+                            <MultiTrigger.Setters>
+                                <Setter TargetName="path" Property="Opacity" Value="0" />
+                                <Setter TargetName="path_over" Property="Opacity" Value="0" />
+                                <Setter	TargetName="content" Property="Foreground" Value="#FF999999" />
+                                <Setter TargetName="inner" Property="Opacity" Value="0.3"/>
+                            </MultiTrigger.Setters>
+                        </MultiTrigger>
+                    </ControlTemplate.Triggers>
 				</ControlTemplate>
 			</Setter.Value>
 		</Setter>
 	</Style>
+
+    <Style x:Key="WindowButton.Checkbox" TargetType="{x:Type CheckBox}">
+        <Setter Property="Template">
+            <Setter.Value>
+                <ControlTemplate TargetType="{x:Type CheckBox}">
+                    <Border BorderBrush="#333" BorderThickness="1,0,1,1" CornerRadius="0,0,3,3" Margin="0">
+                        <Border Name="border" BorderBrush="#666" BorderThickness="1,0,1,1" CornerRadius="0,0,3,3" Margin="0,1,0,0">
+                            <Border Name="b_content" Background="#01000000" CornerRadius="0,0,3,3" Margin="0">
+                                <CheckBox Margin="-5,0,0,0" IsChecked="{TemplateBinding IsChecked}" Content=""></CheckBox>
+                            </Border>
+                        </Border>
+                    </Border>
+                    <ControlTemplate.Triggers>
+                        <Trigger Property="IsMouseOver"	Value="True">
+                            <Setter Property="Background" TargetName="b_content"
+							    Value="#220888FE" />
+                        </Trigger>
+                        <Trigger Property="IsPressed" Value="True">
+                            <Setter	Property="Background" TargetName="b_content"
+							    Value="#220043B5" />
+                        </Trigger>
+                    </ControlTemplate.Triggers>
+                </ControlTemplate>
+            </Setter.Value>
+        </Setter>
+    </Style>
 </ResourceDictionary>

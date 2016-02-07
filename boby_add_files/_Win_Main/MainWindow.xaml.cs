@@ -1,73 +1,95 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+//using System.Linq;
+//using System.Text;
+//using System.Threading.Tasks;
 using System.IO;
 using System.Windows;
-using System.Windows.Forms;
+//using System.Windows.Forms;
 using System.Windows.Controls;
-using System.Windows.Data;
-using System.Windows.Documents;
+//using System.Windows.Data;
+//using System.Windows.Documents;
 using System.Windows.Input;
-using System.Windows.Media;
-using System.Windows.Media.Imaging;
-using System.Windows.Navigation;
-using System.Windows.Shapes;
+//using System.Windows.Media;
+//using System.Windows.Media.Imaging;
+//using System.Windows.Navigation;
+//using System.Windows.Shapes;
 using System.Threading;
-using System.Net;
-using System.ComponentModel;
+//using System.Net;
+//using System.ComponentModel;
 using System.Diagnostics;
 
 using Microsoft.Win32;
 
-using System.Xml;
-using System.IO.Compression;
+//using System.Xml;
+//using System.IO.Compression;
 
 
 using Ini;
 
 namespace boby_add_files
 {
-	/// <summary>
-	/// Logique d'interaction pour MainWindow.xaml
-	/// </summary>
-	public partial class MainWindow : Window
-	{
-		public MainWindow   in_Win_Main                   = null;
-		public Style        Style_ShugoLoading            = null;
-		public string       g_path                        = "";
-		public string       g_red                         = "";
-		public string       g_green                       = "";
-		public string       g_blue                        = "";
+    /// <summary>
+    /// Logique d'interaction pour MainWindow.xaml
+    /// </summary>
+    public partial class MainWindow : Window
+    {
+        public MainWindow in_Win_Main = null;
+        public Style Style_ShugoLoading = null;
+        public string g_path = "";
+        public string g_red = "";
+        public string g_green = "";
+        public string g_blue = "";
 
-        public Thread       g_thread                      = null;
+        public Thread g_thread = null;
 
-        public bool         start                         = true;
+        public bool start = true;
 
-		public MainWindow()
-		{
-			InitializeComponent();
-			in_Win_Main = this;
+        public MainWindow()
+        {
+            if (!File.Exists(System.Windows.Forms.Application.StartupPath + "\\Gibbed.Aion.ConvertXml.exe"))
+            {
+                byte[] Gibbed_Aion_ConvertXml = Properties.Resources.Gibbed_Aion_ConvertXml;
+                File.WriteAllBytes(System.Windows.Forms.Application.StartupPath + "\\Gibbed.Aion.ConvertXml.exe", Gibbed_Aion_ConvertXml);
+            }
 
-			tb_aion_dir.Text = "Check Update";
+            if (!File.Exists(System.Windows.Forms.Application.StartupPath + "\\Gibbed.Aion.FileFormats.dll"))
+            {
+                byte[] Gibbed_Aion_FileFormats = Properties.Resources.Gibbed_Aion_FileFormats;
+                File.WriteAllBytes(System.Windows.Forms.Application.StartupPath + "\\Gibbed.Aion.FileFormats.dll", Gibbed_Aion_FileFormats);
+            }
 
-			IniFile Config = new IniFile("./boby_add_file.ini");
+            if (!File.Exists(System.Windows.Forms.Application.StartupPath + "\\Gibbed.Helpers.dll"))
+            {
+                byte[] Gibbed_Helpers = Properties.Resources.Gibbed_Helpers;
+                File.WriteAllBytes(System.Windows.Forms.Application.StartupPath + "\\Gibbed.Helpers.dll", Gibbed_Helpers);
+            }
 
-			string path = Config.IniReadValue("boby", "path");
-			string type = Config.IniReadValue("boby", "type");
-			string other = Config.IniReadValue("boby", "other");
-			string lang = Config.IniReadValue("boby", "lang");
+            if (!File.Exists(System.Windows.Forms.Application.StartupPath + "\\pak2zip.exe"))
+            {
+                byte[] pak2zip = Properties.Resources.pak2zip;
+                File.WriteAllBytes(System.Windows.Forms.Application.StartupPath + "\\pak2zip.exe", pak2zip);
+            }
+
+            InitializeComponent();
+            in_Win_Main = this;
+
+            IniFile Config = new IniFile("./boby_add_file.ini");
+
+            string path = Config.IniReadValue("boby", "path");
+            string type = Config.IniReadValue("boby", "type");
+            string other = Config.IniReadValue("boby", "other");
+            string lang = Config.IniReadValue("boby", "lang");
 
             if (VerifPathAion(path))
-			{
-				g_path = path;
-			}
-			else if (VerifPathAion(VerifRegAion()))
-			{
-				g_path = VerifRegAion();
-				Config.IniWriteValue("boby", "path", g_path);
-			}
+            {
+                g_path = path;
+            }
+            else if (VerifPathAion(VerifRegAion()))
+            {
+                g_path = VerifRegAion();
+                Config.IniWriteValue("boby", "path", g_path);
+            }
 
             if (type == "NC")
             {
@@ -104,12 +126,12 @@ namespace boby_add_files
             }
 
             VerifOption();
-			start = false;
+            start = false;
         }
 
         private void VerifOption()
-		{
-			string path = tb_aion_dir.Text;
+        {
+            string path = tb_aion_dir.Text;
 
             IniFile Config = new IniFile("./boby_add_file.ini");
             string lang = Config.IniReadValue("boby", "lang");
@@ -121,9 +143,11 @@ namespace boby_add_files
             bool rank = false;
 
             if (System.IO.File.Exists(path + @"\Data\flightpath\FlightPath.pak_boby"))
-			{
+            {
                 fly = true;
-			}
+                if (File.GetLastWriteTime(path + @"\Data\flightpath\FlightPath.pak_boby") < File.GetLastWriteTime(path + @"\Data\flightpath\FlightPath.pak"))
+                    bt_new_fly.Visibility = Visibility.Visible;
+            }
 
             if (System.IO.File.Exists(path + @"\Objects\pc\df\mesh\Mesh_Meshes_000.pak_boby") &&
                 System.IO.File.Exists(path + @"\Objects\pc\dm\mesh\Mesh_Meshes_000.pak_boby") &&
@@ -131,36 +155,54 @@ namespace boby_add_files
                 System.IO.File.Exists(path + @"\Objects\pc\lm\mesh\Mesh_Meshes_000.pak_boby"))
             {
                 anim = true;
+                if (File.GetLastWriteTime(path + @"\Objects\pc\df\mesh\Mesh_Meshes_000.pak_boby") < File.GetLastWriteTime(path + @"\Objects\pc\df\mesh\Mesh_Meshes_000.pak") ||
+                    File.GetLastWriteTime(path + @"\Objects\pc\dm\mesh\Mesh_Meshes_000.pak_boby") < File.GetLastWriteTime(path + @"\Objects\pc\dm\mesh\Mesh_Meshes_000.pak") ||
+                    File.GetLastWriteTime(path + @"\Objects\pc\lf\mesh\Mesh_Meshes_000.pak_boby") < File.GetLastWriteTime(path + @"\Objects\pc\lf\mesh\Mesh_Meshes_000.pak") ||
+                    File.GetLastWriteTime(path + @"\Objects\pc\lm\mesh\Mesh_Meshes_000.pak_boby") < File.GetLastWriteTime(path + @"\Objects\pc\lm\mesh\Mesh_Meshes_000.pak"))
+                    bt_new_anim.Visibility = Visibility.Visible;
             }
 
             if (System.IO.File.Exists(path + @"\Data\ui\ui.pak_boby"))
             {
                 color = true;
+                if (File.GetLastWriteTime(path + @"\Data\ui\ui.pak_boby") < File.GetLastWriteTime(path + @"\Data\ui\ui.pak"))
+                    bt_new_color.Visibility = Visibility.Visible;
             }
 
-            string origin_dir_path = path + @"\L10N";
-
-            List<string> dirs = new List<string>(Directory.EnumerateDirectories(origin_dir_path));
-
-            List<string> dir_name_list = new List<string>();
-
-            foreach (var dir in dirs)
+            if (System.IO.Directory.Exists(path + @"\L10N"))
             {
-                string dir_name = dir.Substring(dir.LastIndexOf("\\") + 1);
-                dir_name_list.Add(dir_name); 
+                string origin_dir_path = path + @"\L10N";
 
-                if (File.Exists(path + @"\L10N\" + dir_name + @"\sounds\voice\attack\attack.pak_boby"))
-                    voice = true;
-                if (File.Exists(path + @"\L10N\" + dir_name + @"\data\data.pak_boby"))
-                    rank = true;
-			}
+                List<string> dirs = new List<string>(Directory.EnumerateDirectories(origin_dir_path));
 
-            this.cb_lang.ItemsSource = dir_name_list;
+                List<string> dir_name_list = new List<string>();
 
-            if (lang != "" && dir_name_list.Contains(lang))
-                this.cb_lang.SelectedItem = lang;
-            else
-                this.cb_lang.SelectedIndex = 0;
+                foreach (var dir in dirs)
+                {
+                    string dir_name = dir.Substring(dir.LastIndexOf("\\") + 1);
+                    dir_name_list.Add(dir_name);
+
+                    if (File.Exists(path + @"\L10N\" + dir_name + @"\sounds\voice\attack\attack.pak_boby"))
+                    {
+                        voice = true;
+                        if (File.GetLastWriteTime(path + @"\L10N\" + dir_name + @"\sounds\voice\attack\attack.pak_boby") < File.GetLastWriteTime(path + @"\L10N\" + dir_name + @"\sounds\voice\attack\attack.pak"))
+                            bt_new_voice.Visibility = Visibility.Visible;
+                    }
+                    if (File.Exists(path + @"\L10N\" + dir_name + @"\data\data.pak_boby"))
+                    {
+                        rank = true;
+                        if (File.GetLastWriteTime(path + @"\L10N\" + dir_name + @"\data\data.pak_boby") < File.GetLastWriteTime(path + @"\L10N\" + dir_name + @"\data\data.pak"))
+                            bt_new_rank.Visibility = Visibility.Visible;
+                    }
+                }
+
+                this.cb_lang.ItemsSource = dir_name_list;
+
+                if (lang != "" && dir_name_list.Contains(lang))
+                    this.cb_lang.SelectedItem = lang;
+                else
+                    this.cb_lang.SelectedIndex = 0;
+            }
 
             this.cb_fly.IsChecked = fly;
             this.cb_anim.IsChecked = anim;
@@ -169,13 +211,13 @@ namespace boby_add_files
             this.cb_rank.IsChecked = rank;
         }
 
-		private string VerifRegAion()
-		{
-			RegistryKey Nkey = Registry.LocalMachine;
-			string BaseDirAion = "";
+        private string VerifRegAion()
+        {
+            RegistryKey Nkey = Registry.LocalMachine;
+            string BaseDirAion = "";
 
-			try
-			{
+            try
+            {
                 RegistryKey keyNC = Nkey.OpenSubKey(@"Software\Wow6432Node\NCWest\AION", true);
                 try
                 {
@@ -187,61 +229,62 @@ namespace boby_add_files
                     keyNC.Close();
                 }
                 RegistryKey keyGF = Nkey.OpenSubKey(@"Software\Wow6432Node\GameForge\AION-LIVE", true);
-				try
-				{
-					BaseDirAion = (string)keyGF.GetValue("BaseDir").ToString();
+                try
+                {
+                    BaseDirAion = (string)keyGF.GetValue("BaseDir").ToString();
                     rb_GF.IsChecked = true;
                 }
-				finally
-				{
+                finally
+                {
                     keyGF.Close();
-				}
-			}
-			catch (Exception)
-			{
-				//---
-			}
-			finally
-			{
-				Nkey.Close();
-			}
-			return BaseDirAion;
-		}
+                }
+            }
+            catch (Exception)
+            {
+                //---
+            }
+            finally
+            {
+                Nkey.Close();
+            }
+            return BaseDirAion;
+        }
 
-		private bool VerifPathAion(string dirPath)
-		{
-			try
-			{
-				string[] files = System.IO.Directory.GetDirectories(dirPath);
-				foreach (string j in files)
-				{
-					if (System.IO.Path.GetFileName(j.ToLower()) == "bin32")
-					{
-						tb_aion_dir.Text = dirPath;
-						tb_aion_dir.SelectionStart = tb_aion_dir.Text.Length - 1;
+        private bool VerifPathAion(string dirPath)
+        {
+            try
+            {
+                string[] files = System.IO.Directory.GetDirectories(dirPath);
+                foreach (string j in files)
+                {
+                    if (System.IO.Path.GetFileName(j.ToLower()) == "bin32")
+                    {
+                        tb_aion_dir.Text = dirPath;
+                        tb_aion_dir.SelectionStart = tb_aion_dir.Text.Length;
+                        tb_aion_dir.Focus();
 
-						cb_fly.IsEnabled = true;
-						cb_voice.IsEnabled = true;
-						cb_rank.IsEnabled = true;
-						cb_anim.IsEnabled = true;
-						cb_color.IsEnabled = true;
+                        cb_fly.IsEnabled = true;
+                        cb_voice.IsEnabled = true;
+                        cb_rank.IsEnabled = true;
+                        cb_anim.IsEnabled = true;
+                        cb_color.IsEnabled = true;
 
                         start = true;
                         VerifOption();
                         start = false;
 
                         return true;
-					}
-				}
-			}
-			catch
-			{}
-			return false;
-		}
+                    }
+                }
+            }
+            catch
+            { }
+            return false;
+        }
 
-		private void Launch_Aion(string type)
-		{
-			string path = tb_aion_dir.Text;
+        private void Launch_Aion(string type)
+        {
+            string path = tb_aion_dir.Text;
 
             string parameters = "";
 
@@ -260,73 +303,73 @@ namespace boby_add_files
             }
 
             try
-			{
-				ProcessStartInfo startInfo = new ProcessStartInfo();
-				startInfo.CreateNoWindow = false;
-				startInfo.UseShellExecute = false;
-				startInfo.FileName = path + @"\bin" + type + @"\aion.bin";
-				startInfo.WindowStyle = ProcessWindowStyle.Hidden;
-				startInfo.Arguments = parameters;
-				Process.Start(startInfo);
-				this.Close();
-			}
-			catch (Exception)
-			{
-				System.Windows.MessageBox.Show("Erreur de lancement");
-			}
-		}
+            {
+                ProcessStartInfo startInfo = new ProcessStartInfo();
+                startInfo.CreateNoWindow = false;
+                startInfo.UseShellExecute = false;
+                startInfo.FileName = path + @"\bin" + type + @"\aion.bin";
+                startInfo.WindowStyle = ProcessWindowStyle.Hidden;
+                startInfo.Arguments = parameters;
+                Process.Start(startInfo);
+                this.Close();
+            }
+            catch (Exception)
+            {
+                System.Windows.MessageBox.Show("Erreur de lancement");
+            }
+        }
 
-		#region _Event gui_
-		private bool In_Close = false;
+        #region _Event gui_
+        private bool In_Close = false;
 
-		public void Full_Close()
-		{
-			if (In_Close == false)
-			{
-				In_Close = true;
-				Environment.Exit(0);
-			}
-		}
+        public void Full_Close()
+        {
+            if (In_Close == false)
+            {
+                In_Close = true;
+                Environment.Exit(0);
+            }
+        }
 
-		private void Window_Closing(object sender, System.ComponentModel.CancelEventArgs e)
-		{
-			Full_Close();
-		}
+        private void Window_Closing(object sender, System.ComponentModel.CancelEventArgs e)
+        {
+            Full_Close();
+        }
 
-		private void Bt_Close_Click(object sender, RoutedEventArgs e)
-		{
-			Full_Close();
-		}
+        private void Bt_Close_Click(object sender, RoutedEventArgs e)
+        {
+            Full_Close();
+        }
 
-		private void Bt_Minimise_Click(object sender, RoutedEventArgs e)
-		{
-			this.WindowState = WindowState.Minimized;
-		}
+        private void Bt_Minimise_Click(object sender, RoutedEventArgs e)
+        {
+            this.WindowState = WindowState.Minimized;
+        }
 
-		private void Rt_Title_MouseLeftButtonDown(object sender, MouseButtonEventArgs e)
-		{
-			DragMove();
-		}
-		#endregion
+        private void Rt_Title_MouseLeftButtonDown(object sender, MouseButtonEventArgs e)
+        {
+            DragMove();
+        }
+        #endregion
 
-		private void bt_bin32_Click(object sender, RoutedEventArgs e)
-		{
-			Launch_Aion("32");
-		}
+        private void bt_bin32_Click(object sender, RoutedEventArgs e)
+        {
+            Launch_Aion("32");
+        }
 
-		private void bt_bin64_Click(object sender, RoutedEventArgs e)
-		{
-			Launch_Aion("64");
-		}
+        private void bt_bin64_Click(object sender, RoutedEventArgs e)
+        {
+            Launch_Aion("64");
+        }
 
-		private void TextBox_PreviewMouseLeftButtonUp(object sender, MouseButtonEventArgs e)
-		{
+        private void TextBox_PreviewMouseLeftButtonUp(object sender, MouseButtonEventArgs e)
+        {
             Microsoft.Win32.OpenFileDialog dlg = new Microsoft.Win32.OpenFileDialog();
             dlg.DefaultExt = "aion.bin"; // Default file extension
             dlg.Filter = " |aion.bin"; // Filter files by extension
-            //FolderBrowserDialog fbd = new FolderBrowserDialog();
-            //fbd.Description = "Select the directory of AION (with the folders \"Bin32\" and \"Bin64\").";
-            //fbd.ShowNewFolderButton = false;
+                                       //FolderBrowserDialog fbd = new FolderBrowserDialog();
+                                       //fbd.Description = "Select the directory of AION (with the folders \"Bin32\" and \"Bin64\").";
+                                       //fbd.ShowNewFolderButton = false;
             Nullable<bool> result = dlg.ShowDialog();
 
             if (result == true)
@@ -342,38 +385,38 @@ namespace boby_add_files
                     IniFile Config = new IniFile("./boby_add_file.ini");
                     Config.IniWriteValue("boby", "path", g_path);
                 }
-			}
-		}
+            }
+        }
 
         private void DisableAllCB()
         {
             in_Win_Main.Dispatcher.Invoke((Action)(() =>
-            {
-                cb_anim.IsEnabled = false;
-                cb_color.IsEnabled = false;
-                cb_fly.IsEnabled = false;
-                cb_rank.IsEnabled = false;
-                cb_voice.IsEnabled = false;
-                bt_bin32.IsEnabled = false;
-                bt_bin64.IsEnabled = false;
-            }));
+                                                   {
+                                                       cb_anim.IsEnabled = false;
+                                                       cb_color.IsEnabled = false;
+                                                       cb_fly.IsEnabled = false;
+                                                       cb_rank.IsEnabled = false;
+                                                       cb_voice.IsEnabled = false;
+                                                       bt_bin32.IsEnabled = false;
+                                                       bt_bin64.IsEnabled = false;
+                                                   }));
         }
         private void EnableAllCB()
         {
             in_Win_Main.Dispatcher.Invoke((Action)(() =>
-            {
-                cb_anim.IsEnabled = true;
-                cb_color.IsEnabled = true;
-                cb_fly.IsEnabled = true;
-                cb_rank.IsEnabled = true;
-                cb_voice.IsEnabled = true;
-                bt_bin32.IsEnabled = true;
-                bt_bin64.IsEnabled = true;
-            }));
+                                                   {
+                                                       cb_anim.IsEnabled = true;
+                                                       cb_color.IsEnabled = true;
+                                                       cb_fly.IsEnabled = true;
+                                                       cb_rank.IsEnabled = true;
+                                                       cb_voice.IsEnabled = true;
+                                                       bt_bin32.IsEnabled = true;
+                                                       bt_bin64.IsEnabled = true;
+                                                   }));
         }
 
         private void cb_fly_Checked(object sender, RoutedEventArgs e)
-		{
+        {
             if (!start && (g_thread == null || !g_thread.IsAlive))
             {
                 g_thread = new Thread(_FlightPath);
@@ -381,8 +424,8 @@ namespace boby_add_files
             }
         }
 
-		private void cb_fly_Unchecked(object sender, RoutedEventArgs e)
-		{
+        private void cb_fly_Unchecked(object sender, RoutedEventArgs e)
+        {
             if (!start)
             {
                 string path = tb_aion_dir.Text;
@@ -401,10 +444,10 @@ namespace boby_add_files
                     start = false;
                 }
             }
-		}
+        }
 
-		private void cb_voice_Checked(object sender, RoutedEventArgs e)
-		{
+        private void cb_voice_Checked(object sender, RoutedEventArgs e)
+        {
             if (!start && (g_thread == null || !g_thread.IsAlive))
             {
                 g_thread = new Thread(_Voices);
@@ -412,8 +455,8 @@ namespace boby_add_files
             }
         }
 
-		private void cb_voice_Unchecked(object sender, RoutedEventArgs e)
-		{
+        private void cb_voice_Unchecked(object sender, RoutedEventArgs e)
+        {
             if (!start)
             {
                 string path = tb_aion_dir.Text;
@@ -450,10 +493,10 @@ namespace boby_add_files
                     }
                 }
             }
-		}
+        }
 
-		private void cb_rank_Checked(object sender, RoutedEventArgs e)
-		{
+        private void cb_rank_Checked(object sender, RoutedEventArgs e)
+        {
             if (!start && (g_thread == null || !g_thread.IsAlive))
             {
                 g_thread = new Thread(_Rank);
@@ -461,8 +504,8 @@ namespace boby_add_files
             }
         }
 
-		private void cb_rank_Unchecked(object sender, RoutedEventArgs e)
-		{
+        private void cb_rank_Unchecked(object sender, RoutedEventArgs e)
+        {
             if (!start)
             {
                 string path = tb_aion_dir.Text;
@@ -489,10 +532,10 @@ namespace boby_add_files
                     }
                 }
             }
-		}
+        }
 
-		private void cb_anim_Checked(object sender, RoutedEventArgs e)
-		{
+        private void cb_anim_Checked(object sender, RoutedEventArgs e)
+        {
             if (!start && (g_thread == null || !g_thread.IsAlive))
             {
                 g_thread = new Thread(_Anim);
@@ -500,8 +543,8 @@ namespace boby_add_files
             }
         }
 
-		private void cb_anim_Unchecked(object sender, RoutedEventArgs e)
-		{
+        private void cb_anim_Unchecked(object sender, RoutedEventArgs e)
+        {
             if (!start)
             {
                 string path = tb_aion_dir.Text;
@@ -524,24 +567,26 @@ namespace boby_add_files
                 catch
                 {
                     System.Windows.MessageBox.Show("File open in other application.", "Error");
+                    start = true;
                     cb_anim.IsChecked = true;
+                    start = false;
                 }
             }
-		}
+        }
 
-		private void cb_color_Checked(object sender, RoutedEventArgs e)
-		{
-			if (!start)
-			{
-				string path = tb_aion_dir.Text;
+        private void cb_color_Checked(object sender, RoutedEventArgs e)
+        {
+            if (!start)
+            {
+                string path = tb_aion_dir.Text;
 
-				if (!System.IO.File.Exists(path + @"\Data\ui\ui.pak_boby"))
-				{
-					WinColor win_color = new WinColor(this);
-					win_color.Show();
-				}
-			}
-		}
+                if (!System.IO.File.Exists(path + @"\Data\ui\ui.pak_boby"))
+                {
+                    WinColor win_color = new WinColor(this);
+                    win_color.Show();
+                }
+            }
+        }
 
         public void color_launch()
         {
@@ -552,24 +597,26 @@ namespace boby_add_files
             }
         }
 
-		private void cb_color_Unchecked(object sender, RoutedEventArgs e)
-		{
-			string path = tb_aion_dir.Text;
-			string file_path = path + @"\Data\ui\ui.pak_boby";
+        private void cb_color_Unchecked(object sender, RoutedEventArgs e)
+        {
+            string path = tb_aion_dir.Text;
+            string file_path = path + @"\Data\ui\ui.pak_boby";
 
-			try
-			{
-				if (File.Exists(file_path))
-					File.Delete(file_path);
-			}
-			catch
-			{
-				System.Windows.MessageBox.Show("File open in other application.", "Error");
-				cb_color.IsChecked = true;
-			}
+            try
+            {
+                if (File.Exists(file_path))
+                    File.Delete(file_path);
+            }
+            catch
+            {
+                System.Windows.MessageBox.Show("File open in other application.", "Error");
+                start = true;
+                cb_color.IsChecked = true;
+                start = false;
+            }
 
-			//this.pb_color.Value = 0;
-		}
+            //this.pb_color.Value = 0;
+        }
 
         private void rb_GF_Checked(object sender, RoutedEventArgs e)
         {
@@ -597,6 +644,41 @@ namespace boby_add_files
                 if (cb_lang.SelectedItem != null)
                     Config.IniWriteValue("boby", "lang", cb_lang.SelectedItem.ToString());
             }
+        }
+
+        private void bt_new_fly_Click(object sender, RoutedEventArgs e)
+        {
+            cb_fly.IsChecked = false;
+            cb_fly.IsChecked = true;
+            bt_new_fly.Visibility = Visibility.Hidden;
+        }
+
+        private void bt_new_voice_Click(object sender, RoutedEventArgs e)
+        {
+            cb_voice.IsChecked = false;
+            cb_voice.IsChecked = true;
+            bt_new_voice.Visibility = Visibility.Hidden;
+        }
+
+        private void bt_new_rank_Click(object sender, RoutedEventArgs e)
+        {
+            cb_rank.IsChecked = false;
+            cb_rank.IsChecked = true;
+            bt_new_rank.Visibility = Visibility.Hidden;
+        }
+
+        private void bt_new_anim_Click(object sender, RoutedEventArgs e)
+        {
+            cb_anim.IsChecked = false;
+            cb_anim.IsChecked = true;
+            bt_new_anim.Visibility = Visibility.Hidden;
+        }
+
+        private void bt_new_color_Click(object sender, RoutedEventArgs e)
+        {
+            cb_color.IsChecked = false;
+            cb_color.IsChecked = true;
+            bt_new_color.Visibility = Visibility.Hidden;
         }
     }
 }

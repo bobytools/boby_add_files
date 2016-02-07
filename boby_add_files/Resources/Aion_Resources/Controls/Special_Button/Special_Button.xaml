@@ -26,4 +26,177 @@
 			</Setter.Value>
 		</Setter>
 	</Style>
+
+    <Style x:Key="Style_Buff_Play_Button" TargetType="{x:Type Button}">
+        <Setter Property="Background" Value="Transparent" />
+        <Setter Property="Foreground" Value="Transparent" />
+        <Setter Property="Width" Value="42" />
+        <Setter Property="Height" Value="42" />
+        <Setter Property="Template">
+            <Setter.Value>
+                <ControlTemplate TargetType="{x:Type Button}">
+                    <Grid>
+                        <Image Name="image"	Source="Play.png" />
+                    </Grid>
+                    <ControlTemplate.Triggers>
+                        <Trigger Property="IsMouseOver"	Value="True">
+                            <Setter	Property="Source" TargetName="image"
+							        Value="Play_Hover.png" />
+                        </Trigger>
+                        <Trigger Property="IsPressed" Value="True">
+                            <Setter	Property="Source" TargetName="image"
+							        Value="Play_Pressed.png" />
+                        </Trigger>
+                    </ControlTemplate.Triggers>
+                </ControlTemplate>
+            </Setter.Value>
+        </Setter>
+    </Style>
+
+    <Style x:Key="Style_Buff_Pause_Button" TargetType="{x:Type Button}">
+        <Setter Property="Background" Value="Transparent" />
+        <Setter Property="Foreground" Value="Transparent" />
+        <Setter Property="Width" Value="42" />
+        <Setter Property="Height" Value="42" />
+        <Setter Property="Template">
+            <Setter.Value>
+                <ControlTemplate TargetType="{x:Type Button}">
+                    <Grid>
+                        <Image Name="image"	Source="Pause.png"/>
+                    </Grid>
+                    <ControlTemplate.Triggers>
+                        <Trigger Property="IsMouseOver"	Value="True">
+                            <Setter	Property="Source" TargetName="image"
+							        Value="Pause_Hover.png" />
+                        </Trigger>
+                        <Trigger Property="IsPressed" Value="True">
+                            <Setter	Property="Source" TargetName="image"
+							        Value="Pause_Pressed.png" />
+                        </Trigger>
+                    </ControlTemplate.Triggers>
+                </ControlTemplate>
+            </Setter.Value>
+        </Setter>
+    </Style>
+
+    <CroppedBitmap x:Key="File_New.Ini"             Source="File_New.png" SourceRect="0,0,26,26"/>
+    <CroppedBitmap x:Key="File_New.Hover"           Source="File_New.png" SourceRect="25,0,26,26"/>
+    <CroppedBitmap x:Key="File_New.Pressed"         Source="File_New.png" SourceRect="50,0,26,26"/>
+
+    <Style x:Key="Style_File_New_Button" TargetType="{x:Type Button}">
+        <Setter Property="Background" Value="Transparent" />
+        <Setter Property="Foreground" Value="Transparent" />
+        <Setter Property="Width" Value="26" />
+        <Setter Property="Height" Value="26" />
+        <Setter Property="Template">
+            <Setter.Value>
+                <ControlTemplate TargetType="{x:Type Button}">
+                    <Grid>
+                        <Image Name="image"	Source="{StaticResource File_New.Ini}"/>
+                    </Grid>
+                    <ControlTemplate.Triggers>
+                        <Trigger Property="IsMouseOver"	Value="True">
+                            <Setter	Property="Source" TargetName="image"
+							        Value="{StaticResource File_New.Hover}" />
+                        </Trigger>
+                        <Trigger Property="IsPressed" Value="True">
+                            <Setter	Property="Source" TargetName="image"
+							        Value="{StaticResource File_New.Pressed}" />
+                        </Trigger>
+                    </ControlTemplate.Triggers>
+                </ControlTemplate>
+            </Setter.Value>
+        </Setter>
+    </Style>
+
+    <CroppedBitmap x:Key="File_Open.Ini"             Source="File_Open.png" SourceRect="0,0,26,26"/>
+    <CroppedBitmap x:Key="File_Open.Hover"           Source="File_Open.png" SourceRect="25,0,26,26"/>
+    <CroppedBitmap x:Key="File_Open.Pressed"         Source="File_Open.png" SourceRect="50,0,26,26"/>
+
+    <Style x:Key="Style_File_Open_Button" TargetType="{x:Type Button}">
+        <Setter Property="Background" Value="Transparent" />
+        <Setter Property="Foreground" Value="Transparent" />
+        <Setter Property="Width" Value="26" />
+        <Setter Property="Height" Value="26" />
+        <Setter Property="Template">
+            <Setter.Value>
+                <ControlTemplate TargetType="{x:Type Button}">
+                    <Grid>
+                        <Image Name="image"	Source="{StaticResource File_Open.Ini}"/>
+                    </Grid>
+                    <ControlTemplate.Triggers>
+                        <Trigger Property="IsMouseOver"	Value="True">
+                            <Setter	Property="Source" TargetName="image"
+							        Value="{StaticResource File_Open.Hover}" />
+                        </Trigger>
+                        <Trigger Property="IsPressed" Value="True">
+                            <Setter	Property="Source" TargetName="image"
+							        Value="{StaticResource File_Open.Pressed}" />
+                        </Trigger>
+                    </ControlTemplate.Triggers>
+                </ControlTemplate>
+            </Setter.Value>
+        </Setter>
+    </Style>
+
+    <CroppedBitmap x:Key="File_Save.Ini"             Source="File_Save.png" SourceRect="0,0,26,26"/>
+    <CroppedBitmap x:Key="File_Save.Hover"           Source="File_Save.png" SourceRect="25,0,26,26"/>
+    <CroppedBitmap x:Key="File_Save.Pressed"         Source="File_Save.png" SourceRect="50,0,26,26"/>
+
+    <Style x:Key="Style_File_Save_Button" TargetType="{x:Type Button}">
+        <Setter Property="Background" Value="Transparent" />
+        <Setter Property="Foreground" Value="Transparent" />
+        <Setter Property="Width" Value="26" />
+        <Setter Property="Height" Value="26" />
+        <Setter Property="Template">
+            <Setter.Value>
+                <ControlTemplate TargetType="{x:Type Button}">
+                    <Grid>
+                        <Image Name="image"	Source="{StaticResource File_Save.Ini}"/>
+                    </Grid>
+                    <ControlTemplate.Triggers>
+                        <Trigger Property="IsMouseOver"	Value="True">
+                            <Setter	Property="Source" TargetName="image"
+							        Value="{StaticResource File_Save.Hover}" />
+                        </Trigger>
+                        <Trigger Property="IsPressed" Value="True">
+                            <Setter	Property="Source" TargetName="image"
+							        Value="{StaticResource File_Save.Pressed}" />
+                        </Trigger>
+                    </ControlTemplate.Triggers>
+                </ControlTemplate>
+            </Setter.Value>
+        </Setter>
+    </Style>
+    
+    <CroppedBitmap x:Key="File_List.Ini"             Source="File_List.png" SourceRect="0,0,26,26"/>
+    <CroppedBitmap x:Key="File_List.Hover"           Source="File_List.png" SourceRect="25,0,26,26"/>
+    <CroppedBitmap x:Key="File_List.Pressed"         Source="File_List.png" SourceRect="50,0,26,26"/>
+
+    <Style x:Key="Style_File_List_Button" TargetType="{x:Type Button}">
+        <Setter Property="Background" Value="Transparent" />
+        <Setter Property="Foreground" Value="Transparent" />
+        <Setter Property="Width" Value="26" />
+        <Setter Property="Height" Value="26" />
+        <Setter Property="Template">
+            <Setter.Value>
+                <ControlTemplate TargetType="{x:Type Button}">
+                    <Grid>
+                        <Image Name="image"	Source="{StaticResource File_List.Ini}"/>
+                    </Grid>
+                    <ControlTemplate.Triggers>
+                        <Trigger Property="IsMouseOver"	Value="True">
+                            <Setter	Property="Source" TargetName="image"
+							        Value="{StaticResource File_List.Hover}" />
+                        </Trigger>
+                        <Trigger Property="IsPressed" Value="True">
+                            <Setter	Property="Source" TargetName="image"
+							        Value="{StaticResource File_List.Pressed}" />
+                        </Trigger>
+                    </ControlTemplate.Triggers>
+                </ControlTemplate>
+            </Setter.Value>
+        </Setter>
+    </Style>
+
 </ResourceDictionary>

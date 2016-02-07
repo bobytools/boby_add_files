@@ -58,9 +58,9 @@
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Platform)' == 'AnyCPU' ">
     <BaseAddress>4194304</BaseAddress>
-    <Prefer32Bit>True</Prefer32Bit>
     <RegisterForComInterop>False</RegisterForComInterop>
     <GenerateSerializationAssemblies>Auto</GenerateSerializationAssemblies>
+    <Prefer32Bit>True</Prefer32Bit>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)' == 'Release' ">
     <CheckForOverflowUnderflow>False</CheckForOverflowUnderflow>
@@ -90,6 +90,9 @@
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </ApplicationDefinition>
+    <Compile Include="Resources\Global_Resources\Windows.xaml.cs">
+      <DependentUpon>Windows.xaml</DependentUpon>
+    </Compile>
     <Compile Include="_Win_Main\add_functions.cs" />
     <Compile Include="_Win_Main\Win_Color\WinColor.xaml.cs">
       <DependentUpon>WinColor.xaml</DependentUpon>
@@ -99,6 +102,10 @@
       <SubType>Designer</SubType>
     </Page>
     <Page Include="Resources\Aion_Resources\Controls\RadioButton\RadioButton.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Resources\Global_Resources\Windows.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </Page>
@@ -159,10 +166,6 @@
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </Page>
-    <Page Include="Resources\Aion_Resources\Windows\BG\BG.xaml">
-      <Generator>MSBuild:Compile</Generator>
-      <SubType>Designer</SubType>
-    </Page>
     <Page Include="Resources\Aion_Resources\Windows\Windows.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
@@ -196,136 +199,24 @@
       <LastGenOutput>Settings.Designer.cs</LastGenOutput>
     </None>
     <AppDesigner Include="Properties\" />
-    <Resource Include="Resources\Aion_Resources\vera.ttf" />
   </ItemGroup>
   <ItemGroup>
     <None Include="App.config" />
   </ItemGroup>
   <ItemGroup>
-    <Resource Include="Resources\Aion_Resources\Controls\Button\Center.png" />
-    <Resource Include="Resources\Aion_Resources\Controls\Button\Center_Disable.png" />
-    <Resource Include="Resources\Aion_Resources\Controls\Button\Center_Hover.png" />
-    <Resource Include="Resources\Aion_Resources\Controls\Button\Center_Pressed.png" />
-    <Resource Include="Resources\Aion_Resources\Controls\Button\Left.png" />
-    <Resource Include="Resources\Aion_Resources\Controls\Button\Left_Disable.png" />
-    <Resource Include="Resources\Aion_Resources\Controls\Button\Left_Hover.png" />
-    <Resource Include="Resources\Aion_Resources\Controls\Button\Left_Pressed.png" />
-    <Resource Include="Resources\Aion_Resources\Controls\Button\Right.png" />
-    <Resource Include="Resources\Aion_Resources\Controls\Button\Right_Disable.png" />
-    <Resource Include="Resources\Aion_Resources\Controls\Button\Right_Hover.png" />
-    <Resource Include="Resources\Aion_Resources\Controls\Button\Right_Pressed.png" />
-    <Resource Include="Resources\Aion_Resources\Controls\Button_Icone\Button.png" />
-    <Resource Include="Resources\Aion_Resources\Controls\CheckBox\Check.png" />
-    <Resource Include="Resources\Aion_Resources\Controls\CheckBox\Disable.png" />
-    <Resource Include="Resources\Aion_Resources\Controls\CheckBox\UnCheck.png" />
-    <Resource Include="Resources\Aion_Resources\Controls\List.png" />
-    <Resource Include="Resources\Aion_Resources\Controls\Loading\Shugo_01.png" />
-    <Resource Include="Resources\Aion_Resources\Controls\Loading\Shugo_02.png" />
-    <Resource Include="Resources\Aion_Resources\Controls\Loading\Shugo_03.png" />
-    <Resource Include="Resources\Aion_Resources\Controls\Loading\Shugo_04.png" />
-    <Resource Include="Resources\Aion_Resources\Controls\Loading\Shugo_05.png" />
-    <Resource Include="Resources\Aion_Resources\Controls\Loading\Shugo_06.png" />
-    <Resource Include="Resources\Aion_Resources\Controls\Loading\Shugo_07.png" />
-    <Resource Include="Resources\Aion_Resources\Controls\Loading\Shugo_08.png" />
-    <Resource Include="Resources\Aion_Resources\Controls\Loading\Shugo_09.png" />
-    <Resource Include="Resources\Aion_Resources\Controls\Loading\Shugo_10.png" />
-    <Resource Include="Resources\Aion_Resources\Controls\Loading\Shugo_11.png" />
-    <Resource Include="Resources\Aion_Resources\Controls\Loading\Shugo_12.png" />
-    <Resource Include="Resources\Aion_Resources\Controls\Loading\Shugo_13.png" />
-    <Resource Include="Resources\Aion_Resources\Controls\Loading\Shugo_14.png" />
-    <Resource Include="Resources\Aion_Resources\Controls\Loading\Shugo_15.png" />
-    <Resource Include="Resources\Aion_Resources\Controls\Loading\Shugo_16.png" />
-    <Resource Include="Resources\Aion_Resources\Controls\New.png" />
-    <Resource Include="Resources\Aion_Resources\Controls\Open.png" />
-    <Resource Include="Resources\Aion_Resources\Controls\Save.png" />
-    <Resource Include="Resources\Aion_Resources\Controls\Slider\SliderThumb.png" />
-    <Resource Include="Resources\Aion_Resources\Controls\Slider\SliderThumb_Hover.png" />
-    <Resource Include="Resources\Aion_Resources\Controls\Slider\SliderThumb_Pressed.png" />
-    <Resource Include="Resources\Aion_Resources\Controls\Slider\Slider_Center.png" />
-    <Resource Include="Resources\Aion_Resources\Controls\Slider\Slider_Left.png" />
-    <Resource Include="Resources\Aion_Resources\Controls\Slider\Slider_Right.png" />
-    <Resource Include="Resources\Aion_Resources\Controls\Special_Button\Left_Arrow.png" />
-    <Resource Include="Resources\Aion_Resources\Controls\Special_Button\Left_Arrow_Hover.png" />
-    <Resource Include="Resources\Aion_Resources\Controls\Special_Button\Left_Arrow_Pressed.png" />
-    <Resource Include="Resources\Aion_Resources\Controls\Special_Button\Right_Arrow.png" />
-    <Resource Include="Resources\Aion_Resources\Controls\Special_Button\Right_Arrow_Hover.png" />
-    <Resource Include="Resources\Aion_Resources\Controls\Special_Button\Right_Arrow_Pressed.png" />
-    <Resource Include="Resources\Aion_Resources\Controls\Special_Button\Search.png" />
-    <Resource Include="Resources\Aion_Resources\Controls\Special_Button\Search_Hover.png" />
-    <Resource Include="Resources\Aion_Resources\Controls\Special_Button\Search_Pressed.png" />
-    <Resource Include="Resources\Aion_Resources\Controls\Textbox\Center.png" />
-    <Resource Include="Resources\Aion_Resources\Controls\Textbox\Keys_Center.png" />
-    <Resource Include="Resources\Aion_Resources\Controls\Textbox\Keys_Left.png" />
-    <Resource Include="Resources\Aion_Resources\Controls\Textbox\Keys_Right.png" />
-    <Resource Include="Resources\Aion_Resources\Controls\Textbox\Left.png" />
-    <Resource Include="Resources\Aion_Resources\Controls\Textbox\Right.png" />
-    <Resource Include="Resources\Aion_Resources\Controls\Win_Button\Close.png" />
-    <Resource Include="Resources\Aion_Resources\Controls\Win_Button\Close_Hover.png" />
-    <Resource Include="Resources\Aion_Resources\Controls\Win_Button\Close_Pressed.png" />
-    <Resource Include="Resources\Aion_Resources\Controls\Win_Button\Hide.png" />
-    <Resource Include="Resources\Aion_Resources\Controls\Win_Button\Hide_Hover.png" />
-    <Resource Include="Resources\Aion_Resources\Controls\Win_Button\Hide_Pressed.png" />
-    <Resource Include="Resources\Aion_Resources\Controls\Win_Button\Minimise.png" />
-    <Resource Include="Resources\Aion_Resources\Controls\Win_Button\Minimise_Hover.png" />
-    <Resource Include="Resources\Aion_Resources\Controls\Win_Button\Minimise_Pressed.png" />
-    <Resource Include="Resources\Aion_Resources\Controls\Win_Button\Radar_Setting.png" />
-    <Resource Include="Resources\Aion_Resources\Controls\Win_Button\Refresh.png" />
-    <Resource Include="Resources\Aion_Resources\Controls\Win_Button\Refresh_Hover.png" />
-    <Resource Include="Resources\Aion_Resources\Controls\Win_Button\Refresh_Pressed.png" />
-    <Resource Include="Resources\Aion_Resources\Controls\Win_Button\Setting.png" />
-    <Resource Include="Resources\Aion_Resources\Controls\Win_Button\Setting_Hover.png" />
-    <Resource Include="Resources\Aion_Resources\Controls\Win_Button\Setting_Pressed.png" />
-    <Resource Include="Resources\Aion_Resources\Controls\Win_Button\Show.png" />
-    <Resource Include="Resources\Aion_Resources\Controls\Win_Button\Show_Hover.png" />
-    <Resource Include="Resources\Aion_Resources\Controls\Win_Button\Show_Pressed.png" />
-    <Resource Include="Resources\Aion_Resources\Windows\BG\BG1_Bottom.png" />
-    <Resource Include="Resources\Aion_Resources\Windows\BG\BG1_Center.png" />
-    <Resource Include="Resources\Aion_Resources\Windows\BG\BG1_Top.png" />
-    <Resource Include="Resources\Aion_Resources\Windows\Win_Bottom_Fill.png" />
-    <Resource Include="Resources\Aion_Resources\Windows\Win_Bottom_Left.png" />
-    <Resource Include="Resources\Aion_Resources\Windows\Win_Bottom_Right.png" />
-    <Resource Include="Resources\Aion_Resources\Windows\Win_Center_Fill.png" />
-    <Resource Include="Resources\Aion_Resources\Windows\Win_Left_Fill.png" />
-    <Resource Include="Resources\Aion_Resources\Windows\Win_Right_Fill.png" />
-    <Resource Include="Resources\Aion_Resources\Windows\Win_Top_Fill.png" />
-    <Resource Include="Resources\Aion_Resources\Windows\Win_Top_Left.png" />
-    <Resource Include="Resources\Aion_Resources\Windows\Win_Top_Right.png" />
+    <Resource Include="Resources\**\*.png" />
   </ItemGroup>
   <ItemGroup>
-    <Resource Include="Resources\Aion_Resources\Windows\Win.png" />
+    <None Include="bin\Release\Gibbed.Aion.ConvertXml.exe" />
   </ItemGroup>
   <ItemGroup>
-    <Resource Include="Resources\Global_Resources\ColorExemple.png" />
+    <None Include="bin\Release\Gibbed.Aion.FileFormats.dll" />
   </ItemGroup>
   <ItemGroup>
-    <Resource Include="Resources\Aion_Resources\Controls\Textbox\Textbox.png" />
+    <None Include="bin\Release\Gibbed.Helpers.dll" />
   </ItemGroup>
   <ItemGroup>
-    <Resource Include="Resources\Aion_Resources\Controls\CheckBox\Checkbox.png" />
-  </ItemGroup>
-  <ItemGroup>
-    <Resource Include="ShugoIconAddFiles.ico" />
-  </ItemGroup>
-  <ItemGroup>
-    <Resource Include="Resources\Aion_Resources\Controls\RadioButton\RadioButton.png" />
-  </ItemGroup>
-  <ItemGroup>
-    <Resource Include="Resources\Aion_Resources\Controls\Button\Button.png" />
-  </ItemGroup>
-  <ItemGroup>
-    <Resource Include="Resources\Aion_Resources\Controls\ComboBox\BG_Bottom.png" />
-    <Resource Include="Resources\Aion_Resources\Controls\ComboBox\BG_Bottom_Left.png" />
-    <Resource Include="Resources\Aion_Resources\Controls\ComboBox\BG_Bottom_Right.png" />
-    <Resource Include="Resources\Aion_Resources\Controls\ComboBox\BG_Center.png" />
-    <Resource Include="Resources\Aion_Resources\Controls\ComboBox\BG_Left.png" />
-    <Resource Include="Resources\Aion_Resources\Controls\ComboBox\BG_Right.png" />
-    <Resource Include="Resources\Aion_Resources\Controls\ComboBox\BG_Top.png" />
-    <Resource Include="Resources\Aion_Resources\Controls\ComboBox\BG_Top_Left.png" />
-    <Resource Include="Resources\Aion_Resources\Controls\ComboBox\BG_Top_Right.png" />
-    <Resource Include="Resources\Aion_Resources\Controls\ComboBox\Center.png" />
-    <Resource Include="Resources\Aion_Resources\Controls\ComboBox\Left.png" />
-    <Resource Include="Resources\Aion_Resources\Controls\ComboBox\Right.png" />
-    <Resource Include="Resources\Aion_Resources\Controls\ComboBox\Toggle.png" />
+    <None Include="bin\Release\pak2zip.exe" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 

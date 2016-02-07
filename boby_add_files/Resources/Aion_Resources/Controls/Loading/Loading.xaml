@@ -15,7 +15,7 @@
                 <Trigger.EnterActions>
                     <BeginStoryboard>
                         <Storyboard Timeline.DesiredFrameRate="16">
-                            <ObjectAnimationUsingKeyFrames Duration="0:0:1.00" Storyboard.TargetProperty="Source" RepeatBehavior="Forever">
+                            <ObjectAnimationUsingKeyFrames Duration="0:0:1.00" Storyboard.TargetProperty="Source" RepeatBehavior="5x">
                                 <DiscreteObjectKeyFrame KeyTime="0:0:0">
                                     <DiscreteObjectKeyFrame.Value>
                                         <BitmapImage UriSource="Shugo_01.png"/>

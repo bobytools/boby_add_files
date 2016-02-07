@@ -57,10 +57,10 @@
 							<Setter
 								TargetName="content"
 								Property="Foreground"
-								Value="#FF88FFFF" />
+								Value="#FFD5AF5E" />
 						</Trigger>
 						<Trigger Property="IsPressed" Value="True">
-                            <Setter Property="Foreground" TargetName="content" Value="#FF88FFFF" />
+                            <Setter Property="Foreground" TargetName="content" Value="#FFD5AF5E" />
                             <Setter Property="Margin" TargetName="content" Value="0,4,0,0" />
 						</Trigger>
 						<Trigger

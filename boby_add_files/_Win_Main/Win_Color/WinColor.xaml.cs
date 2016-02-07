@@ -1,22 +1,22 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+//using System.Collections.Generic;
+//using System.Linq;
+//using System.Text;
+//using System.Threading.Tasks;
 using System.Windows;
-using System.Windows.Controls;
-using System.Windows.Data;
-using System.Windows.Documents;
+//using System.Windows.Controls;
+//using System.Windows.Data;
+//using System.Windows.Documents;
 using System.Windows.Input;
 using System.Windows.Media;
-using System.Windows.Media.Imaging;
-using System.Windows.Shapes;
+//using System.Windows.Media.Imaging;
+//using System.Windows.Shapes;
 
 using Ini;
-using System.Xml;
-using System.Net;
-using System.IO;
-using System.IO.Compression;
+//using System.Xml;
+//using System.Net;
+//using System.IO;
+//using System.IO.Compression;
 
 namespace boby_add_files
 {
@@ -79,7 +79,7 @@ namespace boby_add_files
             DragMove();
         }
 
-        private void bt_Close_Click(object sender, RoutedEventArgs e)
+        private void Bt_Close_Click(object sender, RoutedEventArgs e)
         {
             in_main_win.cb_color.IsChecked = false;
             this.Close();
@@ -98,17 +98,26 @@ namespace boby_add_files
 
         private void tb_red_PreviewKeyUp(object sender, KeyEventArgs e)
         {
-            update_color();
+            int n;
+            bool isNumeric = int.TryParse(tb_red.Text, out n);
+            if (isNumeric)
+                update_color();
         }
 
         private void tb_green_PreviewKeyUp(object sender, KeyEventArgs e)
         {
-            update_color();
+            int n;
+            bool isNumeric = int.TryParse(tb_green.Text, out n);
+            if (isNumeric)
+                update_color();
         }
 
         private void tb_blue_PreviewKeyUp(object sender, KeyEventArgs e)
         {
-            update_color();
+            int n;
+            bool isNumeric = int.TryParse(tb_blue.Text, out n);
+            if (isNumeric)
+                update_color();
         }
     }
 }

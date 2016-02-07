@@ -6,23 +6,35 @@
     <CroppedBitmap x:Key="ToggleButton.2"          Source="Toggle.png" SourceRect="0,40,22,20"/>
 
     <ControlTemplate TargetType="ToggleButton" x:Key="ComboBoxToggleButtonTemplate">
-        <Border BorderThickness="1" Background="#93000000" BorderBrush="#59FFFFFF">
-            <Image
-                HorizontalAlignment="Right" VerticalAlignment="Top" Margin="0,0,0,0"
-				x:Name="imageToogle"
-				Source="{StaticResource ToggleButton.0}"
-				Width="22"
-				Height="20"/>
+        <Border BorderThickness="1" BorderBrush="#333" CornerRadius="4">
+            <Border.Background>
+                <RadialGradientBrush Center="0.5,0.5" RadiusX="0.7" RadiusY="0.8" GradientOrigin="0.5,0.5">
+                    <RadialGradientBrush.GradientStops>
+                        <GradientStop Offset="0" Color="#22000000" />
+                        <GradientStop Offset="1" Color="#77000000" />
+                    </RadialGradientBrush.GradientStops>
+                </RadialGradientBrush>
+            </Border.Background>
+            <Border Name="icon" HorizontalAlignment="Right" VerticalAlignment="Top" Background="#00000000" CornerRadius="0,4,4,0">
+                <Image
+                    HorizontalAlignment="Right" VerticalAlignment="Top" Margin="0,0,0,0"
+				    x:Name="imageToogle"
+				    Source="{StaticResource ToggleButton.0}"
+				    Width="22"
+				    Height="20"/>
+            </Border>
         </Border>
         <ControlTemplate.Triggers>
             <Trigger Property="UIElement.IsMouseOver" Value="True">
-                <Setter Property="Source" TargetName="imageToogle" Value="{StaticResource ToggleButton.1}"/>
+                <Setter Property="Background" TargetName="icon" Value="#A00889FF"/>
+                <Setter Property="Source" TargetName="imageToogle" Value="{StaticResource ToggleButton.1}" />
             </Trigger>
             <Trigger Property="ToggleButton.IsChecked" Value="True">
-                <Setter Property="Source" TargetName="imageToogle" Value="{StaticResource ToggleButton.2}"/>
+                <Setter Property="Background" TargetName="icon" Value="#A00047BD"/>
+                <Setter Property="Source" TargetName="imageToogle" Value="{StaticResource ToggleButton.1}" />
             </Trigger>
             <Trigger Property="UIElement.IsEnabled" Value="False">
-                <Setter Property="Source" TargetName="imageToogle" Value="{StaticResource ToggleButton.0}"/>
+                <Setter Property="Background" TargetName="icon" Value="#00000000"/>
             </Trigger>
         </ControlTemplate.Triggers>
     </ControlTemplate>
@@ -43,7 +55,7 @@
         <Setter Property="Template">
             <Setter.Value>
                 <ControlTemplate TargetType="{x:Type ComboBoxItem}">
-                    <Grid Name="g_st" Background="Transparent">
+                    <Border Name="g_st" Background="Transparent" CornerRadius="2">
                         <TextBlock Name="content"
                                    Foreground="#FFFFFFFF"
                                    HorizontalAlignment="Left"
@@ -52,13 +64,13 @@
                                    FontWeight="{TemplateBinding FontWeight}"
                                    TextAlignment="Left" Width="{TemplateBinding Width}"
                                    Text="{TemplateBinding Content}" />
-                    </Grid>
+                    </Border>
                     <ControlTemplate.Triggers>
                         <Trigger Property="IsMouseOver"	Value="True">
                             <Setter Property="Background" TargetName="g_st" Value="#FF535353" />
                         </Trigger>
                         <Trigger Property="IsSelected" Value="True">
-                            <Setter Property="Foreground" TargetName="content" Value="#FF88FFFF" />
+                            <Setter Property="Foreground" TargetName="content" Value="#FFD5AF5E" />
                             <Setter Property="Background" TargetName="g_st" Value="#FF434343" />
                         </Trigger>
                     </ControlTemplate.Triggers>
@@ -75,6 +87,7 @@
         <Setter Property="Control.Template">
             <Setter.Value>
                 <ControlTemplate TargetType="ComboBox">
+                    <Border CornerRadius="4">
                     <Grid>
                         <ToggleButton ClickMode="Press"
 							              Foreground="Aqua"
@@ -113,13 +126,14 @@
                                       SnapsToDevicePixels="True"                
                                       MinWidth="{TemplateBinding ActualWidth}"
                                       MaxHeight="{TemplateBinding MaxDropDownHeight}">
-                                    <Border Name="DropDownBorder" BorderThickness="1" Background="#FF313131" BorderBrush="#59FFFFFF" />
+                                    <Border Name="DropDownBorder" BorderThickness="1,1,1,1" Background="#EE313131" BorderBrush="#59FFFFFF" CornerRadius="0,0,4,4" />
                                     <ScrollViewer Margin="4,6,4,6" SnapsToDevicePixels="True">
                                         <StackPanel IsItemsHost="True" KeyboardNavigation.DirectionalNavigation="Contained" />
-                                    </ScrollViewer>
+                                    </ScrollViewer>                                        
                             </Grid>
 							</Popup>
 						</Grid>
+                    </Border>
                     <ControlTemplate.Triggers>
                         <Trigger Property="UIElement.IsEnabled" Value="False">
                             <Setter Property="TextElement.Foreground" Value="Black"/>
