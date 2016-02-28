@@ -251,6 +251,9 @@ namespace boby_add_files
 
                 info_text("appli in " + dir_name + " langage...");
 
+                if (!File.Exists(path + @"\L10N\" + dir_name + @"\sounds\voice\attack\attack.pak"))
+                    continue;
+
                 System.IO.File.Copy(path + @"\Sounds\voice\attack\attack.pak", path + @"\L10N\" + dir_name + @"\sounds\voice\attack\attack.pak_boby", true);
                 System.IO.File.Copy(path + @"\Sounds\voice\cast\cast.pak", path + @"\L10N\" + dir_name + @"\sounds\voice\cast\cast.pak_boby", true);
                 System.IO.File.Copy(path + @"\Sounds\voice\damage\damage.pak", path + @"\L10N\" + dir_name + @"\sounds\voice\damage\damage.pak_boby", true);
@@ -296,6 +299,9 @@ namespace boby_add_files
                 string mod_dir_path = System.Windows.Forms.Application.StartupPath + @"\mod";
 
                 info_text(dir_name + " remove tmp file...");
+
+                if (!File.Exists(origin_file_path))
+                    continue;
 
                 try
                 {
