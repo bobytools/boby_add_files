@@ -680,5 +680,31 @@ namespace boby_add_files
             cb_color.IsChecked = true;
             bt_new_color.Visibility = Visibility.Hidden;
         }
+
+        private void Button_Click_Search_In_Dir(object sender, RoutedEventArgs e)
+        {
+            Microsoft.Win32.OpenFileDialog dlg = new Microsoft.Win32.OpenFileDialog();
+            dlg.DefaultExt = "aion.bin"; // Default file extension
+            dlg.Filter = " |aion.bin"; // Filter files by extension
+                                       //FolderBrowserDialog fbd = new FolderBrowserDialog();
+                                       //fbd.Description = "Select the directory of AION (with the folders \"Bin32\" and \"Bin64\").";
+                                       //fbd.ShowNewFolderButton = false;
+            Nullable<bool> result = dlg.ShowDialog();
+
+            if (result == true)
+            {
+                string path = System.IO.Path.GetDirectoryName(System.IO.Path.GetDirectoryName(dlg.FileName)).ToString();
+                if (!VerifPathAion(path))
+                {
+                    System.Windows.MessageBox.Show("It's not aion dir!");
+                }
+                else
+                {
+                    g_path = path;
+                    IniFile Config = new IniFile("./boby_add_file.ini");
+                    Config.IniWriteValue("boby", "path", g_path);
+                }
+            }
+        }
     }
 }

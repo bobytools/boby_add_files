@@ -46,7 +46,7 @@
     <AllowUnsafeBlocks>True</AllowUnsafeBlocks>
   </PropertyGroup>
   <PropertyGroup>
-    <ApplicationIcon>ShugoIconAddFiles.ico</ApplicationIcon>
+    <ApplicationIcon>ShugoIcon.ico</ApplicationIcon>
   </PropertyGroup>
   <PropertyGroup />
   <PropertyGroup />
@@ -217,6 +217,9 @@
   </ItemGroup>
   <ItemGroup>
     <None Include="bin\Release\pak2zip.exe" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="ShugoIcon.ico" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 

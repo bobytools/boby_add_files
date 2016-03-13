@@ -75,7 +75,8 @@
                 <StackPanel Name="OptionPanel" VerticalAlignment="Top"
 		    	                HorizontalAlignment="Stretch" Margin="0,0,0,0">
                     <TextBlock Margin="1,0,1,0" TextAlignment="Center" Foreground="white">aion.bin path:</TextBlock>
-                    <TextBox Name="tb_aion_dir"
+                    <Grid HorizontalAlignment="Stretch">
+                        <TextBox Name="tb_aion_dir"
                                     Height="24"
                                     Margin="0,0,0,0"
                                     TextAlignment="Center"
@@ -83,8 +84,10 @@
                                     IsReadOnly="True"
                                     Cursor="Hand"
                                     PreviewMouseLeftButtonUp="TextBox_PreviewMouseLeftButtonUp">
-                        Select aion.bin file
-                    </TextBox>
+                            Select aion.bin file
+                        </TextBox>
+                        <Button  Style="{StaticResource Style_Refresh_Button2}" Margin="0,0,0,0" Height="24" Width="24" HorizontalAlignment="Right" Click="Button_Click_Search_In_Dir"></Button>
+                    </Grid>
                     <Grid HorizontalAlignment="Stretch">
                         <CheckBox Name="cb_fly" Margin="0,2,0,0" IsEnabled="False"
                                         Checked="cb_fly_Checked"

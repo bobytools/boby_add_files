@@ -126,6 +126,8 @@ namespace boby_add_files
                 string end_y = "";
                 string end_z = "";
 
+                bool wind = false;
+
                 XmlNodeList v2xmlnode = v1node.ChildNodes;
                 foreach (XmlNode v2node in v2xmlnode)
                 {
@@ -139,6 +141,11 @@ namespace boby_add_files
                                 file_name = v3node.InnerText;
                             }
                         }
+                    }
+
+                    if (v2node.Name == "wind")
+                    {
+                        wind = true;
                     }
 
                     if (v2node.Name == "start")
@@ -181,6 +188,9 @@ namespace boby_add_files
                         }
                     }
                 }
+
+                if (wind == true)
+                    continue;
 
                 if (file_name != "" && !file_name.Contains("_Q"))
                 {
